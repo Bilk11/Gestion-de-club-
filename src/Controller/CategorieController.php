@@ -21,7 +21,28 @@ class CategorieController extends AbstractController
 
         return $this->render('admin/index.html.twig');
     }
+    #[Route('/', name: 'accueil')]
+    public function accueil(): Response
+    {
+        
 
+        return $this->render('landing.html.twig');
+    }
+
+    #[Route('/register', name: 'register')]
+    public function register(): Response
+    {
+        
+
+        return $this->render('accueil/register.html.twig');
+    }
+    #[Route('/login', name: 'login')]
+    public function login(): Response
+    {
+        
+
+        return $this->render('accueil/login.html.twig');
+    }
     #[Route('/categorie', name: 'app_categorie')]
     public function index(EntityManagerInterface $entityManager): Response
     {

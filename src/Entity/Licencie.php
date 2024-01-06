@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\LicencieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
 class Licencie
@@ -23,11 +26,9 @@ class Licencie
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(type: Types::OBJECT)]
-    private ?object $contact = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Contact $Contact = null;
+
+   
 
     #[ORM\ManyToOne(inversedBy: 'Licencie')]
     private ?Categorie $categorie = null;
@@ -73,17 +74,7 @@ class Licencie
         return $this;
     }
 
-    public function getContact(): ?object
-    {
-        return $this->contact;
-    }
-
-    public function setContact(object $contact): static
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
+   
 
     public function getCategorie(): ?Categorie
     {
